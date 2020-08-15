@@ -1,0 +1,26 @@
+<mat-toolbar class="app-toolbar" color="primary">
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1 class="mat-title">RxAngular Demos</h1>
+  <app-config-panel
+    class="config-panel"
+    [appComponentRef]="thisRef"
+  ></app-config-panel>
+</mat-toolbar>
+<mat-sidenav-container [style.marginTop.px]="0" class="app-sidenav-container">
+  <mat-sidenav mode="side" opened="true" class="main-sidenav" fixedTopGap="56">
+    <mat-nav-list>
+        <rx-angular-side-nav *ngFor="let menuItem of menuItems" [menuItem]="menuItem">
+        </rx-angular-side-nav>
+
+      <a mat-list-item routerLink="animation" routerLinkActive="active">
+        <mat-icon style="margin-right: 0.5rem;">invert_colors</mat-icon>
+        Animation
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
