@@ -25,9 +25,6 @@
     "template-demo": {
       "tags": ["type:app"]
     },
-    "experiments": {
-      "tags": ["type:app"]
-    },
     "test-helpers": {
       "tags": ["type:util"]
     },
@@ -45,6 +42,9 @@
     },
     "tour-of-heroes-ngxs": {
       "tags": ["type:app"]
+    },
+    "official-demos": {
+      "tags": []
     }
   },
   "affected": {
