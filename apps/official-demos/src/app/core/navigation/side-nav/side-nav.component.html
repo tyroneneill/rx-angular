@@ -1,18 +1,19 @@
 <ng-container *ngIf="menuItem$ | push as item">
-  <mat-expansion-panel *ngIf="item?.children as children else leaveItem">
+  <mat-expansion-panel *ngIf="item?.children else leaveItem">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <ng-container [ngTemplateOutlet]="leaveItem"></ng-container>
+        <a [routerLink]="item.link" mat-list-item routerLinkActive="active">
+          {{ item.label }}
+        </a>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <rx-angular-side-nav *ngFor="let menuItem of children" [menuItem]="menuItem">
+    <rx-angular-side-nav *ngFor="let childItem of item?.children" [menuItem]="childItem">
     </rx-angular-side-nav>
   </mat-expansion-panel>
 
-  <ng-template #leaveItem>
+  <ng-template #leaveItem>s
     <a [routerLink]="item.link" mat-list-item routerLinkActive="active">
       {{ item.label }}
     </a>
   </ng-template>
-
 </ng-container>

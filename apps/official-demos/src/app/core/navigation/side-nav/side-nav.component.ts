@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { RxState } from '@rx-angular/state';
+import { Component, Input } from '@angular/core';
+import { RxState, setProp } from '@rx-angular/state';
 import { MenuItem } from '../menu-item.interface';
 
 @Component({
@@ -7,12 +7,17 @@ import { MenuItem } from '../menu-item.interface';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css']
 })
-export class SideNavComponent extends RxState<{ menuItem: MenuItem }>{
+export class SideNavComponent extends RxState<{ menuItem: MenuItem }> {
 
-  menuItem$ = this.select('menuItem')
+  menuItem$ = this.select('menuItem');
+
   @Input()
   set menuItem(menuItem: MenuItem) {
-    this.set({menuItem})
+    this.set('menuItem', _ =>
+      setProp(menuItem, 'children', menuItem.children
+          .map(c => setProp(c, 'link', menuItem.link + '\/' + c.link))
+      )
+    );
   }
 
 }
